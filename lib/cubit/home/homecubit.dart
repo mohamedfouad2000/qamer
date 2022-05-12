@@ -230,7 +230,7 @@ class homeCubit extends Cubit<HomeStates> {
     });
   }
 
-  void drivercreate({required bio, required int n_o_passengers}) {
+  void drivercreate() {
     emit(adddriverLoading());
     drivermodel model = drivermodel(
         cuurent: 0,
@@ -246,9 +246,9 @@ class homeCubit extends Cubit<HomeStates> {
         c_chip: c_chipurl,
         front: fronturl,
         licence: licenceurl,
-        bio: bio,
+        bio: u_model!.bio,
         isset: false,
-        n_o_passengers: n_o_passengers,
+        n_o_passengers: 4,
         profile:
             "https://cdn.vectorstock.com/i/1000x1000/08/37/profile-icon-male-user-person-avatar-symbol-vector-20910837.webp");
     FirebaseFirestore.instance

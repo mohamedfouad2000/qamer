@@ -402,9 +402,7 @@ class becameadriverscreen extends StatelessWidget {
                       child: TextButton(
                           onPressed: () {
                             if (formkey.currentState!.validate()) {
-                              homeCubit.get(context).drivercreate(
-                                  bio: biocon.text,
-                                  n_o_passengers: int.parse(numbercon.text));
+                              homeCubit.get(context).drivercreate();
 
                               if (state is adddriversucc) {
                                 NavegatorPush(context, confirmornotDriver());
