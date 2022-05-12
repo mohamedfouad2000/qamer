@@ -38,7 +38,7 @@ class homeCubit extends Cubit<HomeStates> {
     emit(Change_nav_index());
   }
 
-  List<Widget> Screens = [feeds(), search()];
+  List<Widget> Screens = [feed(), search()];
   List<String> titles = [
     "Home",
     "search",

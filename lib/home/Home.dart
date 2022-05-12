@@ -31,11 +31,6 @@ class Home extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {}, icon: Icon(IconBroken.Notification)),
-                IconButton(
-                    onPressed: () {
-                      NavegatorPush(context, who());
-                    },
-                    icon: Icon(IconBroken.Paper_Download)),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
