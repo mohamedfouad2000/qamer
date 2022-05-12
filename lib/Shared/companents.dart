@@ -154,7 +154,7 @@ Widget menuItem(int id, String title, IconData icon, context) {
     child: InkWell(
       onTap: () {
         if (id == 5) {
-          casheHelber.removeData(key: Uid).then((value) {
+          casheHelber.removeData(key: 'uId').then((value) {
             Nav(context, loginscreen());
           });
         }
