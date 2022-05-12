@@ -11,7 +11,7 @@ import 'package:project/models/road.dart';
 
 class addDtoR extends StatelessWidget {
   var scafKey = GlobalKey<ScaffoldState>();
-  
+
   @override
   Widget build(BuildContext context) {
     admincubit.get(context).getRoad();
@@ -48,25 +48,27 @@ class addDtoR extends StatelessWidget {
     );
   }
 
-  Widget page(roadmodel model, BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text("From :"),
-          Text("${model.from}"),
-          Spacer(),
-          Text("To :"),
-          Text("${model.to}"),
-          Spacer(),
-          TextButton(
-            onPressed: () async {
-              // admincubit.get(context).driverNotSet=[];
-              // print( admincubit.get(context).driverNotSet.length);
-
-              NavegatorPush(context, adddrivertoroad2(model));
-              // print( admincubit.get(context).driverNotSet.length);
-            },
-            child: Text("Add Driver"),
-          ),
-        ],
+  Widget page(roadmodel model, BuildContext context) => InkWell(
+        onTap: () {
+          NavegatorPush(context, adddrivertoroad2(model));
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                Text("From :"),
+                Text("${model.from}"),
+              ],
+            ),
+            Spacer(),
+            Column(
+              children: [
+                Text("To :"),
+                Text("${model.to}"),
+              ],
+            ),
+          ],
+        ),
       );
 }

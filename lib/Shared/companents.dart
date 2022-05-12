@@ -8,7 +8,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/Shared/brocker.dart';
 import 'package:project/Shared/cashehelber.dart';
+import 'package:project/admin/adminhome.dart';
 import 'package:project/admin/userprofile.dart';
+import 'package:project/home/Home.dart';
 import 'package:project/login/login.dart';
 import 'package:project/models/usermodel.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -108,6 +110,7 @@ void ShowToastFun({required String msg, required toaststate Sort}) =>
 var Uid;
 int pn = 0;
 usermodel? u_model;
+List<usermodel>? allusers = [];
 
 //  usermodel? u_model;
 
@@ -139,11 +142,12 @@ Widget MyDrawerList(context) {
     padding: const EdgeInsets.only(top: 15.0),
     child: Column(
       children: [
-        menuItem(1, 'Service', Icons.home_repair_service_outlined, context),
-        menuItem(2, 'dashboard', Icons.dashboard_outlined, context),
-        menuItem(3, 'settings', Icons.settings_outlined, context),
-        menuItem(4, 'contacts', Icons.people_alt_outlined, context),
-        menuItem(5, 'Log Out', Icons.logout, context),
+        menuItem(1, 'Home', Icons.home_outlined, context),
+        menuItem(2, 'Service', Icons.home_repair_service_outlined, context),
+        menuItem(3, 'dashboard', Icons.dashboard_outlined, context),
+        menuItem(4, 'settings', Icons.settings_outlined, context),
+        menuItem(5, 'contacts', Icons.people_alt_outlined, context),
+        menuItem(6, 'Log Out', Icons.logout, context),
       ],
     ),
   );
@@ -153,7 +157,15 @@ Widget menuItem(int id, String title, IconData icon, context) {
   return Material(
     child: InkWell(
       onTap: () {
-        if (id == 5) {
+        if (id == 1) {
+          if (u_model!.admin)
+            Nav(context, adminhome());
+          else {
+            Nav(context, Home());
+          }
+        }
+
+        if (id == 6) {
           casheHelber.removeData(key: 'uId').then((value) {
             Nav(context, loginscreen());
           });

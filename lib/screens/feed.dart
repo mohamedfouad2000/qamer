@@ -8,6 +8,8 @@ import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/Shared/companents.dart';
 import 'package:project/admin/Show.dart';
+import 'package:project/admin/tagrebi.dart';
+import 'package:project/admin/yourcustomer.dart';
 import 'package:project/bottomscreen/becomedriver/becameadriver.dart';
 import 'package:project/cubit/home/homecubit.dart';
 import 'package:project/cubit/home/homestates.dart';
@@ -84,6 +86,26 @@ class feeds extends StatelessWidget {
                           style: TextStyle(fontSize: 20, color: Colors.white),
                         )),
                   ),
+                if (u_model?.isdriver == true)
+                  Container(
+                    height: 60,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.teal,
+                      // gradient: const LinearGradient(
+                      //     colors: [Colors.blue, Colors.green]),
+                    ),
+                    child: TextButton(
+                        onPressed: () {
+                          NavegatorPush(context, yourcustomer());
+                        },
+                        child: Text(
+                          "show Your Customer",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        )),
+                  ),
+
                 SizedBox(
                   height: 15,
                 ),
@@ -96,6 +118,7 @@ class feeds extends StatelessWidget {
                   ),
                   child: TextButton(
                       onPressed: () {
+                        // homeCubit.get(context).getsiusiu();
                         homeCubit.get(context).getUserData();
                       },
                       child: Text(

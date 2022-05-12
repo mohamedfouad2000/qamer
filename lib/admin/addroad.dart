@@ -224,8 +224,8 @@ class _AddnewRoadState extends State<AddnewRoad> {
                             from_lat: origin!.position.latitude,
                             from_long: origin!.position.longitude,
                             to_lat: destination!.position.latitude,
-                            to: origin!.infoWindow.title.toString(),
-                            from: destination!.infoWindow.title.toString(),
+                            to: destination!.infoWindow.title.toString(),
+                            from: origin!.infoWindow.title.toString(),
                             to_long: destination!.position.longitude);
                         print("getRoad is done");
                       },

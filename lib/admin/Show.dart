@@ -16,6 +16,10 @@ import 'package:project/models/schoolmodel.dart';
 
 List<Marker> mark = [];
 List<Marker> mark2 = [];
+List<Marker> mark3 = [];
+List<Marker> mark4 = [];
+List<Marker> sourcemark = [];
+List<Marker> desmark = [];
 List<Marker> Allmark = [];
 LatLng? Selected;
 Marker? origin;
@@ -251,6 +255,10 @@ class mapshow extends StatelessWidget {
                                 color: Colors.teal,
                                 child: TextButton(
                                     onPressed: () async {
+                                      Allmark.clear();
+                                      Allmark.addAll(mark3);
+                                      Allmark.addAll(mark4);
+
                                       homeCubit
                                           .get(context)
                                           .getRoad(cont: contr);
@@ -440,6 +448,9 @@ class mapshow extends StatelessWidget {
         Spacer(),
         IconButton(
             onPressed: () {
+              // Allmark.clear();
+              // Allmark.addAll(mark3);
+              // Allmark.addAll(mark4);
               NavegatorPush(
                   context,
                   profile(

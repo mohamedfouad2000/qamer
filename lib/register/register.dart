@@ -135,7 +135,7 @@ class register extends StatelessWidget {
                                     }
                                   },
                                   child: const Text(
-                                    "LOGIN",
+                                    "Register",
                                     style: TextStyle(
                                       fontSize: 25,
                                       color: Colors.white,

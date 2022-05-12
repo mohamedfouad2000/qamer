@@ -15,7 +15,8 @@ class Home extends StatelessWidget {
       create: (BuildContext context) {
         return homeCubit()
           ..getUserData()
-          ..getdrivers();
+          ..getdrivers()
+          ..getallusers();
       },
       child: BlocConsumer<homeCubit, HomeStates>(
         builder: (BuildContext context, state) {

@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/Shared/companents.dart';
 import 'package:project/admin/adminhome.dart';
 import 'package:project/cubit/admincubit/admincubit.dart';
+import 'package:project/cubit/admincubit/adminstates.dart';
 import 'package:project/home/Home.dart';
 import 'package:project/models/direction/location.dart';
 import 'package:project/models/schoolmodel.dart';
@@ -31,7 +32,7 @@ class AddMarker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer(
+    return BlocConsumer<admincubit, adminStates>(
       builder: (BuildContext context, state) {
         return Scaffold(
           appBar: AppBar(

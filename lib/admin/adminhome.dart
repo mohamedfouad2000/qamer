@@ -19,6 +19,12 @@ class adminhome extends StatelessWidget {
       child: BlocConsumer<admincubit, adminStates>(
         builder: (BuildContext context, state) {
           return Scaffold(
+            drawer: Drawer(
+              child: SingleChildScrollView(
+                  child: Column(
+                children: [header(context), MyDrawerList(context)],
+              )),
+            ),
             appBar: AppBar(),
             body: Column(
               children: [

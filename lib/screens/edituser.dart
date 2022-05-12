@@ -34,10 +34,13 @@ class editProfile extends StatelessWidget {
           appBar: AppBar(
             elevation: 0.0,
             backgroundColor: Colors.white,
+            iconTheme: IconThemeData(
+              color: Colors.teal,
+            ),
           ),
           body: Container(
             color: Colors.white,
-            height: double.infinity,
+            // height: double.infinity,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -295,6 +298,12 @@ class editProfile extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          drawer: Drawer(
+            child: SingleChildScrollView(
+                child: Column(
+              children: [header(context), MyDrawerList(context)],
+            )),
           ),
         );
       },

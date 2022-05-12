@@ -111,6 +111,8 @@ class setprofilloading extends HomeStates {}
 
 class setprofilsucc extends HomeStates {}
 
+class setprofileoor extends HomeStates {}
+
 class canselRequestloading extends HomeStates {}
 
 class canselRequestsucc extends HomeStates {}
@@ -159,3 +161,21 @@ class updateuserdataLoading extends HomeStates {}
 class updateuserdatasucc extends HomeStates {}
 
 class updateuserdataeroor extends HomeStates {}
+
+class getcustomerLoading extends HomeStates {}
+
+class getcustomersucc extends HomeStates {}
+
+class getcustomereroor extends HomeStates {}
+
+class getallusersLoading extends HomeStates {}
+
+class getalluserssucc extends HomeStates {}
+
+class getalluserseroor extends HomeStates {}
+
+class getnumberofRequestLoading extends HomeStates {}
+
+class getnumberofRequestsucc extends HomeStates {}
+
+class getnumberofRequesteroor extends HomeStates {}

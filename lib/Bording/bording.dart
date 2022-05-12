@@ -38,7 +38,11 @@ class _bordingState extends State<bording> {
           actions: [
             IconButton(
               onPressed: () {
-                Nav(context, loginscreen());
+                casheHelber
+                    .setDataShared(key: "bording", value: true)
+                    .then((value) {
+                  Nav(context, loginscreen());
+                });
               },
               icon: Icon(Icons.navigate_next_rounded),
               iconSize: 30,

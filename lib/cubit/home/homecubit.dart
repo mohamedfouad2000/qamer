@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project/Shared/companents.dart';
 import 'package:project/admin/Show.dart';
 import 'package:project/admin/showRoad.dart';
+import 'package:project/admin/tagrebi.dart';
 import 'package:project/cubit/home/homestates.dart';
 import 'package:project/models/direction/directionmodel.dart';
 import 'package:project/models/direction/directionrep.dart';
@@ -276,6 +277,17 @@ class homeCubit extends Cubit<HomeStates> {
 
   Future<void> DropdownButtonfunction(
       {required String select, required cont}) async {
+    Allmark.toList().forEach((element) {
+      print("siu");
+      print(element.infoWindow.toString());
+    });
+    if (mark3.isNotEmpty) {
+      Allmark.removeWhere((item) =>
+          item.infoWindow.toString() == mark3[0].infoWindow.toString());
+      print("Allmark");
+    }
+    mark3.clear();
+
     emit(DropdownButtonfunctionLoading());
     mark.forEach((element) async {
       if (element.infoWindow.title == select) {
@@ -283,8 +295,19 @@ class homeCubit extends Cubit<HomeStates> {
         controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
             target:
                 LatLng(element.position.latitude, element.position.longitude),
-            zoom: 15)));
+            zoom: 18)));
         destination = element;
+        sourcemark.add(element);
+        // mark3 = sourcemark;
+        // mark3.addAll(sourcemark);
+        // Allmark.addAll(mark3);
+        mark3 = sourcemark;
+        Allmark.addAll(mark3);
+
+        // Allmark.addAll(sourcemark);
+
+        // Allmark.addAll(mark4);
+
         emit(DropdownButtonfunctionsucc());
 
         //  setState(() {});
@@ -294,6 +317,18 @@ class homeCubit extends Cubit<HomeStates> {
 
   Future<void> DropdownButtonfunction2(
       {required String select, required cont}) async {
+    // Allmark.clear();
+    Allmark.toList().forEach((element) {
+      print("siu");
+      print(element.infoWindow.toString());
+    });
+    if (mark4.isNotEmpty) {
+      Allmark.removeWhere((item) =>
+          item.infoWindow.toString() == mark4[0].infoWindow.toString());
+      print("Allmark");
+    }
+    mark4.clear();
+
     emit(DropdownButtonfunction2Loading());
     mark2.forEach((element) async {
       if (element.infoWindow.title == select) {
@@ -301,9 +336,15 @@ class homeCubit extends Cubit<HomeStates> {
         controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
             target:
                 LatLng(element.position.latitude, element.position.longitude),
-            zoom: 15)));
+            zoom: 18)));
         origin = element;
+        desmark.add(element);
+
+        // mark3 = sourcemark;
+        mark4 = desmark;
+        Allmark.addAll(mark4);
         emit(DropdownButtonfunction2succ());
+
         // setState(() {});
       }
     });
@@ -356,6 +397,8 @@ class homeCubit extends Cubit<HomeStates> {
       print("dasdkoaofjodfgdjijiggdjiofjid");
       print(markes.toString());
       emit(setprofilsucc());
+    }).catchError((onError) {
+      emit(setprofileoor());
     });
   }
 
@@ -402,7 +445,7 @@ class homeCubit extends Cubit<HomeStates> {
           position:
               LatLng(element.data()['place_lat'], element.data()['place_long']),
           icon:
-              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
           infoWindow: InfoWindow(title: '${element.data()['schoolname']}'),
           onTap: () {
             destController.text = element.data()['schoolname'];
@@ -434,8 +477,8 @@ class homeCubit extends Cubit<HomeStates> {
           },
         ));
       });
-      Allmark.addAll(mark);
-      Allmark.addAll(mark2);
+      // Allmark.addAll(mark);
+      // Allmark.addAll(mark2);
 
       emit(getsourcesucc());
     });
@@ -454,13 +497,18 @@ class homeCubit extends Cubit<HomeStates> {
         .get()
         .then((value) => value.docs.forEach((element) {
               // print(element.data());
-              if (element.data()['from'] == null) {}
-              drivers.add(drivermodel.fromjson(element.data()));
+              if (element.data()['from'] != '' &&
+                  element.data()['uId'] != u_model!.uId) {
+                drivers.add(drivermodel.fromjson(element.data()));
+              }
+              print(drivers.length);
+
               // print("aplsdoafjijisdfjiojiosdjiofjiosdfjiofjio");
               // print(drivers.length);
             }))
         .then((value) {
       drivers.toSet().toList();
+      print("jjijjijiji");
       // print(drivers.length);
       // print();
     }).catchError((onError) {
@@ -537,10 +585,26 @@ class homeCubit extends Cubit<HomeStates> {
                 .doc(Uid)
                 .collection('drivers')
                 .doc(m.uId)
-                .set(dm.TOMap());
+                .set(dm.TOMap())
+                .then((value) {
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(u_model!.uId)
+                  .collection('drivers')
+                  .get()
+                  .then((value) {
+                print("siu isu ");
+                print(value.docs.length);
+                FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(Uid)
+                    .update({'driverNumber': value.docs.length}).then((value) {
+                  getdrivers();
+                  getUserData();
+                });
+              });
+            });
           });
-        }).then((value) {
-          getdrivers();
         });
         // print("object");
         // updateData(m);
@@ -643,9 +707,33 @@ class homeCubit extends Cubit<HomeStates> {
               .collection('drivers')
               .doc(m.uId)
               .update({'cuurent': x}).then((value) {
-            getdrivers();
-            emit(canselRequestsucc());
-            ShowToastFun(msg: "Cansel done ", Sort: toaststate.success);
+            FirebaseFirestore.instance
+                .collection('users')
+                .doc(u_model!.uId)
+                .collection('drivers')
+                .doc(m.uId)
+                .delete()
+                .then((value) {
+              x = 0;
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(u_model!.uId)
+                  .collection('drivers')
+                  .get()
+                  .then((value) {
+                x = value.docs.length;
+              }).then((value) {
+                FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(u_model!.uId)
+                    .update({'driverNumber': x});
+              }).then((value) {
+                getUserData();
+                getdrivers();
+                emit(canselRequestsucc());
+                ShowToastFun(msg: "Cansel done ", Sort: toaststate.success);
+              });
+            });
           });
         });
         // emit(canselRequestsucc());
@@ -683,6 +771,12 @@ class homeCubit extends Cubit<HomeStates> {
         }
       });
       emit(checkdriversucc());
+    } else {
+      if (x == 1) {
+        isRequest = true;
+      } else {
+        isRequest = false;
+      }
     }
     print("is req $isRequest");
   }
@@ -739,14 +833,19 @@ class homeCubit extends Cubit<HomeStates> {
           .get()
           .then((value) {
         value.docs.forEach((element) {
+          print(element.id);
           drivers.forEach((e) {
             if (e.uId == element.id) {
-              UseroFdriver!.add(e);
+              print(e.name);
+              UseroFdriver?.add(e);
             }
           });
+
           // UseroFdriver!.add(usermodel.fromjson(element.data()));
         });
       }).then((value) {
+        getUserData();
+        getdrivers();
         emit(getDriverOfUSersucc());
       }).catchError((onError) {
         emit(getDriverOfUSereroor());
@@ -828,6 +927,82 @@ class homeCubit extends Cubit<HomeStates> {
     }).catchError((onError) {
       print("eroor");
       emit(updateuserdataeroor());
+    });
+  }
+
+  List<usermodel> customer = [];
+  void getcustomer() {
+    print("in ${allusers!.length}");
+    customer = [];
+    emit(getcustomerLoading());
+    FirebaseFirestore.instance
+        .collection("drivers")
+        .doc(u_model!.uId)
+        .collection("users")
+        .get()
+        .then((value) {
+      print(value.docs.length);
+      value.docs.forEach((element) {
+        print("object");
+        print("in ${allusers!.length}");
+
+        // print(element.id);
+        allusers!.forEach((e) {
+          print("customer.length");
+
+          //   // print(e);
+          //   // print(e);
+
+          if (element.id == e.uId) {
+            customer.add(e);
+          }
+        });
+
+        // customer.add(usermodel.fromjson(element.data()));
+      });
+    }).then((value) {
+      print("sioio");
+      emit(getcustomersucc());
+    }).catchError((onError) {
+      emit(getcustomereroor());
+    });
+    emit(getcustomereroor());
+  }
+
+  void getallusers() {
+    emit(getallusersLoading());
+    FirebaseFirestore.instance.collection("users").get().then((value) {
+      allusers = [];
+
+      value.docs.forEach((element) {
+        allusers!.add(usermodel.fromjson(element.data()));
+      });
+    }).then((value) {
+      print("siu soi osoiioioiodjo");
+      print(allusers!.length);
+      emit(getalluserssucc());
+    }).catchError((onError) {
+      emit(getalluserseroor());
+    });
+  }
+
+  int? nuberofreq;
+  void getnumberofRequest({required usermodel model}) {
+    // nuberofreq = 0;
+    emit(getnumberofRequestLoading());
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(model.uId)
+        .collection("drivers")
+        .doc(u_model!.uId)
+        .get()
+        .then((value) {
+      nuberofreq = value['number'];
+      print(nuberofreq);
+      emit(getnumberofRequestsucc());
+      // print();
+    }).catchError((onError) {
+      emit(getnumberofRequesteroor());
     });
   }
 }
