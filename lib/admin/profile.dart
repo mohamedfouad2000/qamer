@@ -49,7 +49,7 @@ class profile extends StatelessWidget {
                         ),
                         child: Container(
                           width: double.infinity,
-                          height: 150,
+                          height: 140,
                           child: Container(
                             alignment: Alignment(0.0, 2.5),
                             child: CircleAvatar(
@@ -157,16 +157,13 @@ class profile extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          RaisedButton(
-                            onPressed: () {
+                          InkWell(
+                            onTap: () {
                               contactViaWhatsApp(
                                   context: context,
-                                  phoneNumber: '+20 101 095 2433',
+                                  phoneNumber: '+2${model.phone}',
                                   description: 'Hy Man ');
                             },
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80.0),
-                            ),
                             child: Ink(
                               decoration: BoxDecoration(
                                 gradient: const LinearGradient(
@@ -177,7 +174,7 @@ class profile extends StatelessWidget {
                               ),
                               child: Container(
                                 constraints: BoxConstraints(
-                                  maxWidth: 100.0,
+                                  maxWidth: 150.0,
                                   maxHeight: 40.0,
                                 ),
                                 alignment: Alignment.center,
@@ -194,8 +191,8 @@ class profile extends StatelessWidget {
                           ),
                           // if (model.isset == true)
                           homeCubit.get(context).isRequest != true
-                              ? RaisedButton(
-                                  onPressed: () {
+                              ? InkWell(
+                                  onTap: () {
                                     var x = AlertDialog(
                                       title: Text(
                                         "Chosse The Number Of Child",
@@ -265,9 +262,6 @@ class profile extends StatelessWidget {
                                     // homeCubit.get(context).setDriverToRoad(model, context);
                                     // NavegatorPush(context, request(model: model,));
                                   },
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                  ),
                                   child: Ink(
                                     decoration: BoxDecoration(
                                       gradient: const LinearGradient(
@@ -278,7 +272,7 @@ class profile extends StatelessWidget {
                                     ),
                                     child: Container(
                                       constraints: BoxConstraints(
-                                        maxWidth: 100.0,
+                                        maxWidth: 150.0,
                                         maxHeight: 40.0,
                                       ),
                                       alignment: Alignment.center,
@@ -293,15 +287,12 @@ class profile extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              : RaisedButton(
-                                  onPressed: () {
+                              : InkWell(
+                                  onTap: () {
                                     homeCubit.get(context).canselRequest(
                                         m: model, context: context);
                                     Nav(context, Home());
                                   },
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(80.0),
-                                  ),
                                   child: Ink(
                                     decoration: BoxDecoration(
                                       gradient: const LinearGradient(
@@ -312,7 +303,7 @@ class profile extends StatelessWidget {
                                     ),
                                     child: Container(
                                       constraints: BoxConstraints(
-                                        maxWidth: 100.0,
+                                        maxWidth: 150.0,
                                         maxHeight: 40.0,
                                       ),
                                       alignment: Alignment.center,

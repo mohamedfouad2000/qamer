@@ -120,28 +120,7 @@ class feed extends StatelessWidget {
                 SizedBox(
                   height: 22,
                 ),
-                if (u_model?.isdriver == false)
-                  Container(
-                    height: 60,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.teal,
 
-                      // gradient: const LinearGradient(
-                      //     colors: [Colors.blue, Colors.green]),
-                    ),
-                    child: TextButton(
-                        onPressed: () {
-                          NavegatorPush(context, becameadriverscreen());
-                        },
-                        child: Text(
-                          "Became a Driver",
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                        )),
-                  ),
-                SizedBox(
-                  height: 15,
-                ),
                 // GridView.count(
                 //   shrinkWrap: true,
                 //   childAspectRatio: 1 / 1.77,
