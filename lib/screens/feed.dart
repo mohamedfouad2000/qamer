@@ -8,6 +8,7 @@ import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/Shared/companents.dart';
 import 'package:project/admin/Show.dart';
+import 'package:project/admin/showRoad.dart';
 import 'package:project/admin/yourcustomer.dart';
 import 'package:project/bottomscreen/becomedriver/becameadriver.dart';
 import 'package:project/cubit/home/homecubit.dart';
@@ -21,12 +22,13 @@ class feed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // print("Uid is ${u_model}");
-    // homeCubit.get(context).getUserData();
+
     return BlocConsumer<homeCubit, HomeStates>(
       builder: (BuildContext context, state) {
         return Padding(
           padding: const EdgeInsets.all(10.0),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               children: [
                 Row(
@@ -120,6 +122,23 @@ class feed extends StatelessWidget {
                 SizedBox(
                   height: 22,
                 ),
+                if (homeCubit.get(context).lat != null &&
+                    homeCubit.get(context).long != null)
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 250,
+                    child: GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(homeCubit.get(context).lat,
+                            homeCubit.get(context).long),
+                        zoom: 15,
+                      ),
+                      myLocationEnabled: true,
+                      onTap: (i) {
+                        NavegatorPush(context, mapshow());
+                      },
+                    ),
+                  )
 
                 // GridView.count(
                 //   shrinkWrap: true,

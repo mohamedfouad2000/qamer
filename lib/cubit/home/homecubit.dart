@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:location/location.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -1004,5 +1005,38 @@ class homeCubit extends Cubit<HomeStates> {
     }).catchError((onError) {
       emit(getnumberofRequesteroor());
     });
+  }
+
+  var lat;
+  var long;
+  CameraPosition? myarea;
+  void getloction() async {
+    emit(getloctionLoading());
+    Location location = new Location();
+    bool? servesenable;
+    PermissionStatus? permison;
+    LocationData? locationdata;
+    servesenable = await location.serviceEnabled();
+    if (!servesenable) {
+      servesenable = await location.requestService();
+      if (!servesenable) {
+        return;
+      }
+    }
+    permison = await location.hasPermission();
+    if (permison == PermissionStatus.denied) {
+      permison = await location.requestPermission();
+      if (permison != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    locationdata = await location.getLocation();
+    lat = locationdata.latitude;
+    long = locationdata.longitude;
+    print(lat);
+    print(long);
+
+    emit(getloctionsucc());
   }
 }

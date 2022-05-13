@@ -179,3 +179,9 @@ class getnumberofRequestLoading extends HomeStates {}
 class getnumberofRequestsucc extends HomeStates {}
 
 class getnumberofRequesteroor extends HomeStates {}
+
+class getloctionLoading extends HomeStates {}
+
+class getloctionsucc extends HomeStates {}
+
+class getloctioneroor extends HomeStates {}
