@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/Shared/companents.dart';
-import 'package:project/admin/profile.dart';
+import 'package:project/screens/profile.dart';
 import 'package:project/cubit/home/homecubit.dart';
 import 'package:project/cubit/home/homestates.dart';
 import 'package:project/models/drivermodel.dart';

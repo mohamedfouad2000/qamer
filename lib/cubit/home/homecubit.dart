@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/Shared/companents.dart';
-import 'package:project/admin/Show.dart';
+import 'package:project/screens/Show.dart';
 import 'package:project/admin/showRoad.dart';
 import 'package:project/admin/tagrebi.dart';
 import 'package:project/cubit/home/homestates.dart';
@@ -250,8 +250,7 @@ class homeCubit extends Cubit<HomeStates> {
         bio: u_model!.bio,
         isset: false,
         n_o_passengers: 4,
-        profile:
-            "https://cdn.vectorstock.com/i/1000x1000/08/37/profile-icon-male-user-person-avatar-symbol-vector-20910837.webp");
+        profile: u_model!.profile);
     FirebaseFirestore.instance
         .collection('drivers')
         .doc(Uid)
@@ -319,6 +318,7 @@ class homeCubit extends Cubit<HomeStates> {
   Future<void> DropdownButtonfunction2(
       {required String select, required cont}) async {
     // Allmark.clear();
+    print("object");
     Allmark.toList().forEach((element) {
       print("siu");
       print(element.infoWindow.toString());
@@ -527,11 +527,12 @@ class homeCubit extends Cubit<HomeStates> {
     driverOfPlace = [];
     print('out${driverOfPlace.length}');
     print(drivers.length);
+    print("${from} $to ");
     drivers.forEach((element) {
+      print("${element.from} ${element.to}");
       if (element.from == from &&
           element.to == to &&
           element.cuurent < element.n_o_passengers) {
-        print("${from}          ${element.from} ");
         driverOfPlace.add(element);
         print('IN${driverOfPlace.length}');
       }
@@ -998,7 +999,7 @@ class homeCubit extends Cubit<HomeStates> {
         .doc(u_model!.uId)
         .get()
         .then((value) {
-      nuberofreq = value['number'];
+      model.n = value['number'];
       print(nuberofreq);
       emit(getnumberofRequestsucc());
       // print();

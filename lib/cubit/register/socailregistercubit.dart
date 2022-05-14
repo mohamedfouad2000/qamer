@@ -58,7 +58,7 @@ class registercubit extends Cubit<register_States> {
   }) {
     usermodel model = usermodel(
         bio: "",
-        profile: gender == 'mal'
+        profile: gender == 'male'
             ? 'https://cdn-icons-png.flaticon.com/512/219/219986.png'
             : 'https://www.shareicon.net/data/512x512/2016/09/15/829453_user_512x512.png',
         admin: false,

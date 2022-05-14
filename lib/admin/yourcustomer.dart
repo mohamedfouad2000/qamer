@@ -17,6 +17,7 @@ class yourcustomer extends StatelessWidget {
     // homeCubit.get(context).getallusers();
 
     homeCubit.get(context).getcustomer();
+
     // FirebaseFirestore.instance
     //     .collection("driver")
     //     .doc(u_model!.uId)
@@ -65,88 +66,52 @@ class yourcustomer extends StatelessWidget {
   }
 }
 
-Widget cust(context, usermodel model, state) => Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: InkWell(
-            onTap: () {
-              NavegatorPush(context, customerprof(model: model));
-            },
-            child: CircleAvatar(
-              radius: 30,
-              backgroundImage: NetworkImage("${model.profile}"),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "${model.name}",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 6,
-            ),
-            Text(
-              "${model.bio}",
-              style: TextStyle(fontSize: 14, color: Colors.grey[650]),
-            ),
-          ],
-        ),
-        Spacer(),
-        InkWell(
+Widget cust(context, usermodel model, state) {
+  homeCubit.get(context).getnumberofRequest(model: model);
+  return Row(
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
           onTap: () {
-            homeCubit.get(context).getnumberofRequest(model: model);
-            var x = AlertDialog(
-              title: Text(
-                "The number Of child ",
-                style: TextStyle(color: Colors.black),
-              ),
-              content: Container(
-                  height: 140,
-                  child: ConditionalBuilder(
-                    builder: (BuildContext context) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "${homeCubit.get(context).nuberofreq}",
-                            style: TextStyle(fontSize: 80),
-                          ),
-                          Icon(
-                            Icons.child_care,
-                            size: 80,
-                          ),
-                        ],
-                      );
-                    },
-                    condition: state is! getnumberofRequestLoading,
-                    fallback: (BuildContext context) {
-                      return Center(child: CircularProgressIndicator());
-                    },
-                  )),
-            );
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return x;
-                });
+            NavegatorPush(context, customerprof(model: model));
           },
-          child: Text(
-            "Show",
-            style: TextStyle(
-              fontSize: 25,
-            ),
+          child: CircleAvatar(
+            radius: 30,
+            backgroundImage: NetworkImage("${model.profile}"),
           ),
         ),
-        SizedBox(
-          width: 20,
-        )
-      ],
-    );
+      ),
+      SizedBox(
+        width: 20,
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "${model.name}",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 6,
+          ),
+          Text(
+            "${model.bio}",
+            style: TextStyle(fontSize: 14, color: Colors.grey[650]),
+          ),
+        ],
+      ),
+      Spacer(),
+      if (model.n != null)
+        Container(
+          child: Text(
+            "${model.n}",
+            textScaleFactor: 2,
+          ),
+        ),
+      SizedBox(
+        width: 20,
+      )
+    ],
+  );
+}

@@ -194,60 +194,79 @@ class profile extends StatelessWidget {
                               ? InkWell(
                                   onTap: () {
                                     var x = AlertDialog(
-                                      title: Text(
-                                        "Chosse The Number Of Child",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      content: Container(
-                                        height: 140,
-                                        child: ListView.separated(
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Expanded(
-                                                  child: TextButton.icon(
-                                                    onPressed: () {
-                                                      homeCubit
-                                                          .get(context)
-                                                          .requestTODriver(
-                                                              model,
-                                                              context,
-                                                              index + 1);
-                                                      Nav(context, Home());
-                                                    },
-                                                    icon: Icon(
-                                                      Icons.child_care,
-                                                      color: Colors.black,
-                                                    ),
-                                                    label: Text(
-                                                      " ${index + 1} child",
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                          itemCount: model.n_o_passengers -
-                                              model.cuurent,
-                                          separatorBuilder:
-                                              (BuildContext context,
-                                                  int index) {
-                                            return Container(
-                                              height: 1,
-                                              width: double.infinity,
-                                              color: Colors.grey,
-                                            );
-                                          },
+                                        title: Text(
+                                          "Chosse The Number Of Child",
+                                          style: TextStyle(color: Colors.black),
                                         ),
-                                      ),
-                                    );
+                                        content: model.n_o_passengers -
+                                                    model.cuurent !=
+                                                0
+                                            ? Container(
+                                                height: 140,
+                                                child: ListView.separated(
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Expanded(
+                                                          child:
+                                                              TextButton.icon(
+                                                            onPressed: () {
+                                                              homeCubit
+                                                                  .get(context)
+                                                                  .requestTODriver(
+                                                                      model,
+                                                                      context,
+                                                                      index +
+                                                                          1);
+                                                              Nav(context,
+                                                                  Home());
+                                                            },
+                                                            icon: Icon(
+                                                              Icons.child_care,
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                            label: Text(
+                                                              " ${index + 1} child",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                  itemCount:
+                                                      model.n_o_passengers -
+                                                          model.cuurent,
+                                                  separatorBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return Container(
+                                                      height: 1,
+                                                      width: double.infinity,
+                                                      color: Colors.grey,
+                                                    );
+                                                  },
+                                                ),
+                                              )
+                                            : Container(
+                                                child: Text(
+                                                  "${model.name} Car Is Full ",
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.red),
+                                                ),
+                                              ));
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {

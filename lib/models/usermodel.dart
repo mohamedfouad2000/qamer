@@ -10,6 +10,7 @@ class usermodel {
   var admin;
   var profile;
   var bio;
+  var n;
 
   usermodel(
       {required this.name,
@@ -22,7 +23,8 @@ class usermodel {
       required this.gender,
       required this.admin,
       required this.profile,
-      required this.bio});
+      required this.bio,
+      this.n});
   usermodel.fromjson(Map<String, dynamic> json) {
     email = json['email'];
     name = json['name'];

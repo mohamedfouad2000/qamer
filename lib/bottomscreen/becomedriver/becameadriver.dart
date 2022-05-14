@@ -6,16 +6,21 @@ import 'package:project/Shared/companents.dart';
 import 'package:project/confirmdriver/condriver.dart';
 import 'package:project/cubit/home/homecubit.dart';
 import 'package:project/cubit/home/homestates.dart';
+import 'package:project/home/Home.dart';
 
 class becameadriverscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<homeCubit, HomeStates>(
       builder: (BuildContext context, state) {
-        var biocon = TextEditingController();
-        var numbercon = TextEditingController();
         var formkey = GlobalKey<FormState>();
         return Scaffold(
+          drawer: Drawer(
+            child: SingleChildScrollView(
+                child: Column(
+              children: [header(context), MyDrawerList(context)],
+            )),
+          ),
           appBar: AppBar(
             title: Text("Became driver"),
             actions: [
@@ -58,7 +63,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "Gallary",
@@ -82,7 +87,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "camera",
@@ -147,7 +152,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "Gallary",
@@ -171,7 +176,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "camera",
@@ -235,7 +240,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "Gallary",
@@ -259,7 +264,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "camera",
@@ -323,7 +328,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "Gallary",
@@ -347,7 +352,7 @@ class becameadriverscreen extends StatelessWidget {
                                         Container(
                                             height: 50,
                                             width: double.infinity,
-                                            color: Colors.blue,
+                                            color: Colors.teal,
                                             child: TextButton.icon(
                                                 label: Text(
                                                   "camera",
@@ -392,28 +397,35 @@ class becameadriverscreen extends StatelessWidget {
                       height: 15,
                     ),
                     // if (state is licencePhotosucc)
-                    // if (homeCubit.get(context).licenceurl != null &&
-                    //     homeCubit.get(context).fronturl != null &&
-                    //     homeCubit.get(context).c_chipurl != null &&
-                    //     homeCubit.get(context).backurl != null)
-                    Container(
-                      color: Theme.of(context).backgroundColor,
-                      width: double.infinity,
-                      child: TextButton(
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              homeCubit.get(context).drivercreate();
+                    if (homeCubit.get(context).licenceurl != null &&
+                        homeCubit.get(context).fronturl != null &&
+                        homeCubit.get(context).c_chipurl != null &&
+                        homeCubit.get(context).backurl != null)
+                      Container(
+                        color: Theme.of(context).backgroundColor,
+                        width: double.infinity,
+                        child: TextButton(
+                            onPressed: () {
+                              if (formkey.currentState!.validate()) {
+                                homeCubit.get(context).drivercreate();
 
-                              if (state is adddriversucc) {
-                                NavegatorPush(context, confirmornotDriver());
+                                if (state is adddriversucc) {
+                                  Nav(context, Home());
+                                  ShowToastFun(
+                                      msg:
+                                          "Please Wait the Admin to check Your Data",
+                                      Sort: toaststate.success);
+
+                                  //  "Please Wait the Admin to check Your Data"
+                                }
                               }
-                            }
-                          },
-                          child: Text(
-                            "confirm",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          )),
-                    )
+                            },
+                            child: Text(
+                              "confirm",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            )),
+                      )
                   ],
                 ),
               ),

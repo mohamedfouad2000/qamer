@@ -14,21 +14,26 @@ class adddrivertoroad2 extends StatelessWidget {
   roadmodel model1;
   adddrivertoroad2(this.model1);
 
-    var scafKey = GlobalKey<ScaffoldState>();
+  var scafKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-          
     return BlocConsumer<admincubit, adminStates>(
       builder: (BuildContext context, state) {
         admincubit.get(context).getdriverNotSet();
         return Scaffold(
           key: scafKey,
           appBar: AppBar(),
+          drawer: Drawer(
+            child: SingleChildScrollView(
+                child: Column(
+              children: [header(context), MyDrawerList(context)],
+            )),
+          ),
           body: ConditionalBuilder(
-            builder: (BuildContext context) {              
+            builder: (BuildContext context) {
               return ListView.separated(
-                 physics: BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
                   return driverNotSet(
                       admincubit.get(context).driverNotSet[index], context);

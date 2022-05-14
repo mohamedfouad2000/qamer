@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project/admin/Show.dart';
+import 'package:project/screens/Show.dart';
 import 'package:project/cubit/home/homecubit.dart';
 import 'package:project/cubit/home/homestates.dart';
 import 'package:project/models/direction/directionmodel.dart';
@@ -11,7 +11,7 @@ import 'package:project/models/direction/directionrep.dart';
 import 'package:project/models/drivermodel.dart';
 
 Directions? infoo;
-List<Marker> markes=[];
+List<Marker> markes = [];
 
 class showRoad extends StatelessWidget {
   static const _initialCameraPosition = CameraPosition(
@@ -25,12 +25,12 @@ class showRoad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     homeCubit.get(context).setprofil(model!);
+    homeCubit.get(context).setprofil(model!);
     homeCubit.get(context).getRoadofShowing(cont: controllerr);
     // homeCubit.get(context).getRoad(cont: controllerr);
     // markes!.add(homeCubit.get(context).profileor!);
     // markes!.add(homeCubit.get(context).profildi!);
-   
+
     return BlocConsumer<homeCubit, HomeStates>(
       builder: (BuildContext context, state) {
         return GoogleMap(
@@ -59,7 +59,6 @@ class showRoad extends StatelessWidget {
                 points: infoo!.polylinePoints
                     .map((e) => LatLng(e.latitude, e.longitude))
                     .toList(),
-             
               ),
           },
         );

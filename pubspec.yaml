@@ -66,6 +66,7 @@ dependencies:
   flutter_rating_bar:
   hexcolor: ^2.0.7
   flutter_staggered_grid_view:
+  dropdown_search:
 
 
 

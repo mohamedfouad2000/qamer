@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/Shared/companents.dart';
-import 'package:project/admin/Show.dart';
+import 'package:project/screens/Show.dart';
 import 'package:project/admin/showRoad.dart';
 import 'package:project/admin/yourcustomer.dart';
 import 'package:project/bottomscreen/becomedriver/becameadriver.dart';
@@ -104,6 +104,8 @@ class feed extends StatelessWidget {
                 const SizedBox(height: 20),
                 InkWell(
                   onTap: () {
+                    origin = null;
+                    destination = null;
                     NavegatorPush(context, mapshow());
                   },
                   child: TextField(
@@ -134,7 +136,10 @@ class feed extends StatelessWidget {
                         zoom: 15,
                       ),
                       myLocationEnabled: true,
+                      mapType: MapType.normal,
                       onTap: (i) {
+                        origin = null;
+                        destination = null;
                         NavegatorPush(context, mapshow());
                       },
                     ),

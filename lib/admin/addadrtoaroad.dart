@@ -19,6 +19,12 @@ class addDtoR extends StatelessWidget {
       builder: (BuildContext context, state) {
         return Scaffold(
           key: scafKey,
+          drawer: Drawer(
+            child: SingleChildScrollView(
+                child: Column(
+              children: [header(context), MyDrawerList(context)],
+            )),
+          ),
           appBar: AppBar(),
           body: ConditionalBuilder(
             builder: (BuildContext context) {

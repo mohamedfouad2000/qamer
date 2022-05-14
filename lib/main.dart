@@ -8,7 +8,7 @@ import 'package:project/Bording/bording.dart';
 import 'package:project/Shared/blocobser.dart';
 import 'package:project/Shared/cashehelber.dart';
 import 'package:project/Shared/companents.dart';
-import 'package:project/admin/Show.dart';
+import 'package:project/screens/Show.dart';
 import 'package:project/admin/addSource.dart';
 import 'package:project/admin/addroad.dart';
 import 'package:project/admin/userprofile.dart';
