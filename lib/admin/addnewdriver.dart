@@ -11,10 +11,10 @@ import 'package:project/models/drivermodel.dart';
 class addNewdrivers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    admincubit.get(context).di();
+
     return BlocConsumer<admincubit, adminStates>(
       builder: (BuildContext context, state) {
-        admincubit.get(context).di();
-
         return Scaffold(
             appBar: AppBar(
               title: Text("Accept the Driver "),
@@ -35,7 +35,7 @@ class addNewdrivers extends StatelessWidget {
                   },
                 );
               },
-              condition: state is! updateGetdriverloading,
+              condition: state is! getDloading,
               fallback: (BuildContext context) {
                 return Center(child: CircularProgressIndicator());
               },

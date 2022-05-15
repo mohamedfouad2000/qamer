@@ -54,16 +54,29 @@ class admincubit extends Cubit<adminStates> {
   List<drivermodel> d = [];
   void di() {
     d = [];
-    // emit(getDloading());
+    emit(getDloading());
+    FirebaseFirestore.instance
+        .collection("drivers")
+        .get()
+        .then((value) => value.docs.forEach((element) {
+              if (element['worker'] == false) {
+                d.add(drivermodel.fromjson(element.data()));
+              }
+            }))
+        .then((value) {
+      emit(getDsucc());
+    }).catchError((onError) {
+      emit(getDerror());
+    });
 
     // print("drivers.length");
     // print(drivers.length);
-    drivers.forEach((element) {
-      if (element.worker == false) {
-        d.add(element);
-        // print("siu ");
-      }
-    });
+    // drivers.forEach((element) {
+    //   if (element.worker == false) {
+    //     d.add(element);
+    //     // print("siu ");
+    //   }
+    // });
     // emit(getDsucc());
   }
 
@@ -90,7 +103,7 @@ class admincubit extends Cubit<adminStates> {
     driverNotSet = [];
     emit(getdrivernotsetloading());
     drivers.forEach((element) {
-      if (element.isset == false) {
+      if (element.isset == false && element.worker == true) {
         driverNotSet.add(element);
         // print(driverNotSet.length);
       }

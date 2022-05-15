@@ -8,6 +8,7 @@ import 'package:project/Bording/bording.dart';
 import 'package:project/Shared/blocobser.dart';
 import 'package:project/Shared/cashehelber.dart';
 import 'package:project/Shared/companents.dart';
+import 'package:project/admin/adminhome.dart';
 import 'package:project/screens/Show.dart';
 import 'package:project/admin/addSource.dart';
 import 'package:project/admin/addroad.dart';
@@ -30,7 +31,11 @@ Future<void> main() async {
   Uid = casheHelber.getDataShared(key: 'uId');
 //   print(uId);
   if (Uid != null) {
-    w = Home();
+    if (Uid == 'MvRpxoJlDyXeiNG5XsbEH927ce92') {
+      w = adminhome();
+    } else {
+      w = Home();
+    }
   } else if (bordingg) {
     w = loginscreen();
   } else {
@@ -113,7 +118,13 @@ ThemeData darkthem = ThemeData(
     ));
 ThemeData lightthem = ThemeData(
   // fontFamily: 'Foush',
-  fontFamily: 'siu',
+  // fontFamily: 'siu',
+  dialogTheme: DialogTheme(
+    backgroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(24),
+    ),
+  ),
 
   primarySwatch: Colors.teal,
   backgroundColor: Colors.teal,
@@ -132,7 +143,7 @@ ThemeData lightthem = ThemeData(
   appBarTheme: AppBarTheme(
       backgroundColor: Colors.teal,
       titleTextStyle: TextStyle(
-          fontSize: 29, color: Colors.white, fontWeight: FontWeight.bold),
+          fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
       elevation: 0.0,
       // ignore: deprecated_member_use
       backwardsCompatibility: false,

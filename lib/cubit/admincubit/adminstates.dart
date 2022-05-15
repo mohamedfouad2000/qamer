@@ -18,6 +18,8 @@ class getDloading extends adminStates {}
 
 class getDsucc extends adminStates {}
 
+class getDerror extends adminStates {}
+
 class getdrivernotsetloading extends adminStates {}
 
 class getdrivernotsetsucc extends adminStates {}

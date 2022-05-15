@@ -19,11 +19,7 @@ class drivermodel {
   var from;
   var to;
   var cuurent;
-
-
-
-
-
+  var rate;
 
   drivermodel({
     required this.name,
@@ -43,7 +39,7 @@ class drivermodel {
     required this.from,
     required this.to,
     required this.cuurent,
-
+    required this.rate,
   });
   drivermodel.fromjson(Map<String, dynamic> json) {
     email = json['email'];
@@ -63,9 +59,7 @@ class drivermodel {
     from = json['from'];
     to = json['to'];
     cuurent = json['cuurent'];
-
-
-
+    rate = json['rate'];
   }
 
   // عشان ال set بتحتاج map تتحط فيها
@@ -88,9 +82,7 @@ class drivermodel {
       'from': from,
       'to': to,
       'cuurent': cuurent,
-
-
-
+      'rate': rate,
     };
   }
 }

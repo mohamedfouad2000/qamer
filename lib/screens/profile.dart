@@ -11,6 +11,7 @@ import 'package:project/cubit/home/homestates.dart';
 import 'package:project/home/Home.dart';
 import 'package:project/models/drivermodel.dart';
 import 'package:project/screens/feed.dart';
+import 'package:project/screens/rating.dart';
 
 class profile extends StatelessWidget {
   drivermodel model;
@@ -42,6 +43,8 @@ class profile extends StatelessWidget {
                   child: ConditionalBuilder(
                 builder: (BuildContext context) {
                   return Column(
+                    // crossAxisAlignment: CrossAxisAlignment.stretch,
+                    // mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
                         decoration: BoxDecoration(
@@ -151,9 +154,28 @@ class profile extends StatelessWidget {
                             letterSpacing: 2.0,
                             fontWeight: FontWeight.w300),
                       ),
+
                       SizedBox(
-                        height: 100,
+                        height: 50,
                       ),
+                      TextButton.icon(
+                          onPressed: () {
+                            openRatingDialog(context);
+                          },
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              Colors.blue.withOpacity(0.1),
+                            ),
+                          ),
+                          icon: Icon(Icons.star),
+                          label: Text(
+                            'Rate us!',
+                            style: Theme.of(context).textTheme.headline6,
+                          )),
+                      SizedBox(
+                        height: 20,
+                      ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -366,5 +388,17 @@ class profile extends StatelessWidget {
       },
       listener: (BuildContext context, Object? state) {},
     );
+  }
+
+  void openRatingDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: RatingView(
+              model: model,
+            ),
+          );
+        });
   }
 }

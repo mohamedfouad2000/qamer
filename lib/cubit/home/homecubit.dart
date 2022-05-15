@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/Shared/companents.dart';
+import 'package:project/models/ratingmodel.dart';
 import 'package:project/screens/Show.dart';
 import 'package:project/admin/showRoad.dart';
 import 'package:project/admin/tagrebi.dart';
@@ -234,6 +235,7 @@ class homeCubit extends Cubit<HomeStates> {
   void drivercreate() {
     emit(adddriverLoading());
     drivermodel model = drivermodel(
+        rate: 0,
         cuurent: 0,
         from: "",
         to: "",
@@ -1039,5 +1041,51 @@ class homeCubit extends Cubit<HomeStates> {
     print(long);
 
     emit(getloctionsucc());
+  }
+
+  void rating({drivermodel? model, ratingnumber, comment, improvements}) {
+    int x = 0;
+    var ratingnum = 0;
+    var rating = 0;
+
+    ratingmodel r = ratingmodel(
+        ratingnumber: ratingnumber,
+        comment: comment,
+        improvements: improvements);
+    FirebaseFirestore.instance
+        .collection("drivers")
+        .doc(model!.uId)
+        .collection("rating")
+        .doc(u_model!.uId)
+        .set(r.TOMap())
+        .then((value) {
+      FirebaseFirestore.instance
+          .collection("drivers")
+          .doc(model.uId)
+          .collection("rating")
+          .get()
+          .then((value) {
+        x = value.docs.length;
+      }).then((value) {
+        FirebaseFirestore.instance
+            .collection("drivers")
+            .doc(model.uId)
+            .collection("rating")
+            .get()
+            .then((value) {
+          value.docs.forEach((element) {
+            ratingnum = element['ratingnumber'];
+            rating += ratingnum;
+          });
+        }).then((value) {
+          FirebaseFirestore.instance
+              .collection("drivers")
+              .doc(model.uId)
+              .update({'rate': rating / x}).then((value) {
+            print("aha");
+          });
+        });
+      });
+    });
   }
 }

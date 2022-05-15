@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project/Shared/cashehelber.dart';
 import 'package:project/Shared/companents.dart';
 import 'package:project/admin/addSource.dart';
 import 'package:project/admin/addadrtoaroad.dart';
@@ -8,6 +9,7 @@ import 'package:project/admin/addnewdriver.dart';
 import 'package:project/admin/addroad.dart';
 import 'package:project/cubit/admincubit/admincubit.dart';
 import 'package:project/cubit/admincubit/adminstates.dart';
+import 'package:project/login/login.dart';
 
 class adminhome extends StatelessWidget {
   @override
@@ -62,6 +64,15 @@ class adminhome extends StatelessWidget {
                         NavegatorPush(context, addSource());
                       },
                       child: Text("Set A Sourcs")),
+                ),
+                Expanded(
+                  child: TextButton(
+                      onPressed: () {
+                        casheHelber.removeData(key: 'uId').then((value) {
+                          Nav(context, loginscreen());
+                        });
+                      },
+                      child: Text("Logout")),
                 ),
               ],
             ),
