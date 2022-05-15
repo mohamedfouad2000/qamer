@@ -118,7 +118,7 @@ ThemeData darkthem = ThemeData(
     ));
 ThemeData lightthem = ThemeData(
   // fontFamily: 'Foush',
-  // fontFamily: 'siu',
+  fontFamily: 'siu',
   dialogTheme: DialogTheme(
     backgroundColor: Colors.white,
     shape: RoundedRectangleBorder(
