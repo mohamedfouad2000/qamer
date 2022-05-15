@@ -27,106 +27,105 @@ class feed extends StatelessWidget {
       builder: (BuildContext context, state) {
         return Padding(
           padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    if (u_model?.isdriver == false)
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            NavegatorPush(context, becameadriverscreen());
-                          },
-                          child: const ActionContainerLarge(
-                            img: 'as/images/suv.png',
-                            title: 'Became a Driver',
-                          ),
-                        ),
-                      ),
-                    if (u_model?.isdriver == true)
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            NavegatorPush(context, yourcustomer());
-                          },
-                          child: const ActionContainerLarge(
-                            img: 'as/images/suv.png',
-                            title: 'My Customer',
-                          ),
-                        ),
-                      ),
-                    const SizedBox(width: 20),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  if (u_model?.isdriver == false)
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          NavegatorPush(context, who());
+                          NavegatorPush(context, becameadriverscreen());
                         },
-                        child: ActionContainerLarge(
-                            img: 'as/images/box.png', title: 'Package'),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 20),
-                Row(
-                  children: const [
-                    Expanded(
-                      child: ActionContainerSmall(
-                        img: 'as/images/car.png',
-                        title: 'Car',
+                        child: const ActionContainerLarge(
+                          img: 'as/images/suv.png',
+                          title: 'Became a Driver',
+                        ),
                       ),
                     ),
-                    SizedBox(width: 10),
+                  if (u_model?.isdriver == true)
                     Expanded(
-                      child: ActionContainerSmall(
-                        img: 'as/images/train.png',
-                        title: 'Train',
+                      child: InkWell(
+                        onTap: () {
+                          NavegatorPush(context, yourcustomer());
+                        },
+                        child: const ActionContainerLarge(
+                          img: 'as/images/suv.png',
+                          title: 'My Customer',
+                        ),
                       ),
                     ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: ActionContainerSmall(
-                        img: 'as/images/bus.png',
-                        title: 'Bus',
-                      ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        NavegatorPush(context, who());
+                      },
+                      child: ActionContainerLarge(
+                          img: 'as/images/box.png', title: 'Package'),
                     ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: ActionContainerSmall(
-                        img: 'as/images/car.png',
-                        title: 'Transit',
-                      ),
+                  )
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: const [
+                  Expanded(
+                    child: ActionContainerSmall(
+                      img: 'as/images/car.png',
+                      title: 'Car',
                     ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                InkWell(
-                  onTap: () {
-                    origin = null;
-                    destination = null;
-                    NavegatorPush(context, mapshow());
-                  },
-                  child: TextField(
-                    enabled: false,
-                    autofocus: false,
-                    showCursor: false,
-                    decoration: InputDecoration(
-                        hintText: 'Choose Your School?',
-                        hintStyle: const TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 24),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        border: InputBorder.none),
                   ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ActionContainerSmall(
+                      img: 'as/images/train.png',
+                      title: 'Train',
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ActionContainerSmall(
+                      img: 'as/images/bus.png',
+                      title: 'Bus',
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: ActionContainerSmall(
+                      img: 'as/images/car.png',
+                      title: 'Transit',
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              InkWell(
+                onTap: () {
+                  origin = null;
+                  destination = null;
+                  NavegatorPush(context, mapshow());
+                },
+                child: TextField(
+                  enabled: false,
+                  autofocus: false,
+                  showCursor: false,
+                  decoration: InputDecoration(
+                      hintText: 'Choose Your School?',
+                      hintStyle: const TextStyle(
+                          fontWeight: FontWeight.w500, fontSize: 24),
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      border: InputBorder.none),
                 ),
-                SizedBox(
-                  height: 22,
-                ),
-                if (homeCubit.get(context).lat != null &&
-                    homeCubit.get(context).long != null)
-                  Container(
+              ),
+              SizedBox(
+                height: 22,
+              ),
+              if (homeCubit.get(context).lat != null &&
+                  homeCubit.get(context).long != null)
+                Expanded(
+                  child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 250,
                     child: GoogleMap(
@@ -143,54 +142,54 @@ class feed extends StatelessWidget {
                         NavegatorPush(context, mapshow());
                       },
                     ),
-                  )
+                  ),
+                )
 
-                // GridView.count(
-                //   shrinkWrap: true,
-                //   childAspectRatio: 1 / 1.77,
-                //   physics: NeverScrollableScrollPhysics(),
-                //   crossAxisCount: 3,
-                //   mainAxisSpacing: 10,
-                //   crossAxisSpacing: 10,
-                //   children: [
-                //     Container(
-                //       color: Colors.teal,
-                //       child: TextButton(
-                //           onPressed: () {
-                //             NavegatorPush(context, becameadriverscreen());
-                //           },
-                //           child: Text(
-                //             "Became a Driver",
-                //             style: Theme.of(context).textTheme.bodyLarge,
-                //           )),
-                //     ),
-                //     Container(
-                //       color: Colors.tealAccent,
-                //       child: TextButton(
-                //           onPressed: () {
-                //             homeCubit.get(context).getUserData();
-                //           },
-                //           child: Text(
-                //             "Siu ",
-                //             style: Theme.of(context).textTheme.bodyLarge,
-                //           )),
-                //     ),
-                //     Container(
-                //       color: Colors.teal,
-                //       child: TextButton(
-                //         onPressed: () {
-                //           NavegatorPush(context, mapshow());
-                //         },
-                //         child: Text(
-                //           "GEt A School Ya Ragel ya sIu",
-                //           style: Theme.of(context).textTheme.bodyLarge,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-              ],
-            ),
+              // GridView.count(
+              //   shrinkWrap: true,
+              //   childAspectRatio: 1 / 1.77,
+              //   physics: NeverScrollableScrollPhysics(),
+              //   crossAxisCount: 3,
+              //   mainAxisSpacing: 10,
+              //   crossAxisSpacing: 10,
+              //   children: [
+              //     Container(
+              //       color: Colors.teal,
+              //       child: TextButton(
+              //           onPressed: () {
+              //             NavegatorPush(context, becameadriverscreen());
+              //           },
+              //           child: Text(
+              //             "Became a Driver",
+              //             style: Theme.of(context).textTheme.bodyLarge,
+              //           )),
+              //     ),
+              //     Container(
+              //       color: Colors.tealAccent,
+              //       child: TextButton(
+              //           onPressed: () {
+              //             homeCubit.get(context).getUserData();
+              //           },
+              //           child: Text(
+              //             "Siu ",
+              //             style: Theme.of(context).textTheme.bodyLarge,
+              //           )),
+              //     ),
+              //     Container(
+              //       color: Colors.teal,
+              //       child: TextButton(
+              //         onPressed: () {
+              //           NavegatorPush(context, mapshow());
+              //         },
+              //         child: Text(
+              //           "GEt A School Ya Ragel ya sIu",
+              //           style: Theme.of(context).textTheme.bodyLarge,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+            ],
           ),
         );
       },

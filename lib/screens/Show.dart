@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/conditional.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project/Shared/brocker.dart';
 import 'package:project/Shared/companents.dart';
 import 'package:project/screens/profile.dart';
 import 'package:project/cubit/home/homecubit.dart';
@@ -133,11 +134,14 @@ class mapshow extends StatelessWidget {
 
                           //list of dropdown items
                           items: mark.map((e) {
+                            // info = null;
                             return e.infoWindow.title.toString();
                           }).toList(),
                           // label: "Country",
 
                           onChanged: (p) {
+                            info = null;
+
                             print(p);
                             dropdownValue = p;
                             destController.text = p!;
@@ -168,6 +172,8 @@ class mapshow extends StatelessWidget {
                           }).toList(),
                           // label: "Country",
                           onChanged: (p) {
+                            // info = null;
+
                             homeCubit.get(context).DropdownButtonfunction2(
                                 cont: contr, select: p!);
                             dropdownValue2 = p;
@@ -240,12 +246,34 @@ class mapshow extends StatelessWidget {
                                                             (BuildContext
                                                                     context,
                                                                 int index) {
-                                                          return buttomS(
-                                                              context,
-                                                              homeCubit
-                                                                      .get(context)
-                                                                      .driverOfPlace[
-                                                                  index]);
+                                                          return Column(
+                                                            children: [
+                                                              Row(
+                                                                children: [
+                                                                  Spacer(),
+                                                                  Positioned(
+                                                                    right: 0,
+                                                                    child:
+                                                                        MaterialButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      },
+                                                                      child: Text(
+                                                                          'Close'),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              buttomS(
+                                                                  context,
+                                                                  homeCubit
+                                                                      .get(
+                                                                          context)
+                                                                      .driverOfPlace[index]),
+                                                            ],
+                                                          );
                                                         },
                                                         itemCount: homeCubit
                                                             .get(context)
@@ -336,7 +364,7 @@ class mapshow extends StatelessWidget {
                         if (info != null)
                           Polyline(
                             polylineId: const PolylineId('overview_polyline'),
-                            color: Colors.lightBlue,
+                            color: Colors.teal,
                             width: 3,
                             points: info!.polylinePoints
                                 .map((e) => LatLng(e.latitude, e.longitude))
