@@ -28,54 +28,125 @@ class adminhome extends StatelessWidget {
             //   )),
             // ),
             appBar: AppBar(),
-            body: Column(
-              children: [
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        NavegatorPush(context, AddnewRoad());
-                      },
-                      child: Text("Add A New Road")),
+            body: GridView.count(
+              primary: false,
+              padding: const EdgeInsets.all(20),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              crossAxisCount: 2,
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
+                    NavegatorPush(context, AddnewRoad());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[100],
+                    child: Center(child: const Text("Add A New Road")),
+                  ),
                 ),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        NavegatorPush(context, addDtoR());
-                      },
-                      child: Text("Add  A Driver To Road ")),
+                InkWell(
+                  onTap: () {
+                    NavegatorPush(context, addDtoR());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[200],
+                    child: Center(child: const Text('Add  A Driver To Road ')),
+                  ),
                 ),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        NavegatorPush(context, addNewdrivers());
-                      },
-                      child: Text("Accept Driver")),
+                InkWell(
+                  onTap: () {
+                    NavegatorPush(context, addNewdrivers());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[300],
+                    child: Center(child: const Text('Accept Driver')),
+                  ),
                 ),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        NavegatorPush(context, AddMarker());
-                      },
-                      child: Text("Set A School")),
+                InkWell(
+                  onTap: () {
+                    NavegatorPush(context, AddMarker());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[400],
+                    child: Center(child: const Text('Set A School')),
+                  ),
                 ),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        NavegatorPush(context, addSource());
-                      },
-                      child: Text("Set A Sourcs")),
+                InkWell(
+                  onTap: () {
+                    NavegatorPush(context, addSource());
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[500],
+                    child: Center(child: const Text('Set A Sourcs')),
+                  ),
                 ),
-                Expanded(
-                  child: TextButton(
-                      onPressed: () {
-                        casheHelber.removeData(key: 'uId').then((value) {
-                          Nav(context, loginscreen());
-                        });
-                      },
-                      child: Text("Logout")),
+                InkWell(
+                  onTap: () {
+                    casheHelber.removeData(key: 'uId').then((value) {
+                      Nav(context, loginscreen());
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    color: Colors.teal[600],
+                    child: Center(child: const Text('Logout')),
+                  ),
                 ),
               ],
             ),
+            // Column(
+            //   children: [
+            //     Expanded(
+            //       child: TextButton(
+            //           onPressed: () {
+            //             NavegatorPush(context, AddnewRoad());
+            //           },
+            //           child: Text("Add A New Road")),
+            //     ),
+            //     Expanded(
+            //       child: TextButton(
+            //           onPressed: () {
+            //             NavegatorPush(context, addDtoR());
+            //           },
+            //           child: Text("Add  A Driver To Road ")),
+            //     ),
+            //     Expanded(
+            //       child: TextButton(
+            //           onPressed: () {
+            //             NavegatorPush(context, addNewdrivers());
+            //           },
+            //           child: Text("Accept Driver")),
+            //     ),
+            //     Expanded(
+            //       child: TextButton(
+            //           onPressed: () {
+            //             NavegatorPush(context, AddMarker());
+            //           },
+            //           child: Text("Set A School")),
+            //     ),
+            //     Expanded(
+            //       child: TextButton(
+            //           onPressed: () {
+            //             NavegatorPush(context, addSource());
+            //           },
+            //           child: Text("Set A Sourcs")),
+            //     ),
+            //     Expanded(
+            //       child: TextButton(
+            //           onPressed: () {
+            //             casheHelber.removeData(key: 'uId').then((value) {
+            //               Nav(context, loginscreen());
+            //             });
+            //           },
+            //           child: Text("Logout")),
+            //     ),
+            //   ],
+            // ),
           );
         },
         listener: (BuildContext context, Object? state) {},
