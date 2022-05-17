@@ -16,8 +16,8 @@ class createUser_succ_state extends register_States {
 }
 
 class createUser_eroor_state extends register_States {
-  String eroor;
-  createUser_eroor_state(this.eroor);
+  String? eroor;
+  createUser_eroor_state({this.eroor});
 }
 
 class changePasswordRe extends register_States {}

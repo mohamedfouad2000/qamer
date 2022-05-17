@@ -78,7 +78,7 @@ class registercubit extends Cubit<register_States> {
       emit(createUser_succ_state(uId: uId));
     }).catchError((onError) {
       print(onError.toString());
-      emit(createUser_eroor_state(onError.toString()));
+      emit(createUser_eroor_state(eroor: onError.toString()));
     });
   }
 }

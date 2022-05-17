@@ -203,6 +203,11 @@ class register extends StatelessWidget {
               });
             }
           }
+          if (state is createUser_eroor_state) {
+            ShowToastFun(
+                msg: "${state.eroor.toString().substring(30)}",
+                Sort: toaststate.error);
+          }
         },
       ),
     );
