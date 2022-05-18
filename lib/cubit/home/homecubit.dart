@@ -1038,6 +1038,14 @@ class homeCubit extends Cubit<HomeStates> {
     long = locationdata.longitude;
     print(lat);
     print(long);
+    if (u_model!.isdriver == true) {
+      FirebaseFirestore.instance
+          .collection("drivers")
+          .doc(u_model!.uId)
+          .collection("location")
+          .doc('user1')
+          .set({'latitude': '$lat', 'longitude': '$long'});
+    }
 
     emit(getloctionsucc());
   }
@@ -1085,6 +1093,20 @@ class homeCubit extends Cubit<HomeStates> {
           });
         });
       });
+    });
+  }
+
+  void getlivelocation({required drivermodel model}) {
+    emit(livelocationLoading());
+    FirebaseFirestore.instance
+        .collection("drivers")
+        .doc(model.uId)
+        .collection("location")
+        .doc('user1')
+        .snapshots()
+        .listen((event) {
+      print("object");
+      print(event['latitude']);
     });
   }
 }

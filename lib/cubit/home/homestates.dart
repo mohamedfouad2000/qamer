@@ -185,3 +185,9 @@ class getloctionLoading extends HomeStates {}
 class getloctionsucc extends HomeStates {}
 
 class getloctioneroor extends HomeStates {}
+
+class livelocationLoading extends HomeStates {}
+
+class livelocationsucc extends HomeStates {}
+
+class livelocationeroor extends HomeStates {}

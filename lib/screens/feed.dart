@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/Shared/companents.dart';
+import 'package:project/livelocation.dart';
 import 'package:project/screens/Show.dart';
 import 'package:project/admin/showRoad.dart';
 import 'package:project/admin/yourcustomer.dart';
@@ -143,8 +144,13 @@ class feed extends StatelessWidget {
                       },
                     ),
                   ),
-                )
-
+                ),
+              if (u_model?.isdriver == true)
+                TextButton(
+                    onPressed: () {
+                      NavegatorPush(context, livelocation());
+                    },
+                    child: Text("data"))
               // GridView.count(
               //   shrinkWrap: true,
               //   childAspectRatio: 1 / 1.77,

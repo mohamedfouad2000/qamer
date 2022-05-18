@@ -9,9 +9,12 @@ import 'package:project/cubit/admincubit/admincubit.dart';
 import 'package:project/cubit/home/homecubit.dart';
 import 'package:project/cubit/home/homestates.dart';
 import 'package:project/home/Home.dart';
+import 'package:project/livelocation.dart';
 import 'package:project/models/drivermodel.dart';
+import 'package:project/screens/aly.dart';
 import 'package:project/screens/feed.dart';
 import 'package:project/screens/rating.dart';
+import 'package:project/screens/siu.dart';
 
 class profile extends StatelessWidget {
   drivermodel model;
@@ -175,7 +178,15 @@ class profile extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-
+                      TextButton(
+                          onPressed: () {
+                            NavegatorPush(
+                                context,
+                                ali(
+                                  model: model,
+                                ));
+                          },
+                          child: Text("data")),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
