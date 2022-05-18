@@ -67,6 +67,7 @@ dependencies:
   hexcolor: ^2.0.7
   flutter_staggered_grid_view:
   dropdown_search:
+  permission_handler: ^9.2.0
 
 
 
