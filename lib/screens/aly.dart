@@ -29,7 +29,7 @@ class _aliState extends State<ali> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _listenLocation();
+    // _listenLocation();
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration(size: Size(48, 48)), 'assets/my_icon.png')
         .then((onValue) {
@@ -89,30 +89,6 @@ class _aliState extends State<ali> {
         );
       },
     ));
-  }
-
-  Future<void> _listenLocation() async {
-    _locationSubscription = location.onLocationChanged.handleError((onError) {
-      print(onError);
-      _locationSubscription?.cancel();
-      setState(() {
-        _locationSubscription = null;
-      });
-    }).listen((loc.LocationData currentlocation) async {
-      print("currentlocation  okokokooooooooooooooooooooooooooooooooo");
-      x = currentlocation.latitude;
-      y = currentlocation.longitude;
-      print(currentlocation);
-      await FirebaseFirestore.instance
-          .collection('drivers')
-          .doc(model.uId)
-          .collection('location')
-          .doc('user1')
-          .set({
-        'latitude': currentlocation.latitude,
-        'longitude': currentlocation.longitude,
-      }, SetOptions(merge: true));
-    });
   }
 
   Future<void> mymap(AsyncSnapshot<QuerySnapshot> snapshot) async {
