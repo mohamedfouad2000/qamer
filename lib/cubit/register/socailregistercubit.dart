@@ -30,6 +30,7 @@ class registercubit extends Cubit<register_States> {
     required String gender,
   }) {
     emit(register_loding_state());
+    print("object");
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
@@ -44,8 +45,7 @@ class registercubit extends Cubit<register_States> {
           uId: value.user!.uid,
           gender: gender);
     }).catchError((onError) {
-      print("siu eroor");
-      emit(register_eroor_state());
+        emit(createUser_eroor_state(eroor: onError.toString()));
     });
   }
 

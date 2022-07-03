@@ -53,7 +53,7 @@ class _aliState extends State<ali> {
           .snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (_added) {
-          // mymap(snapshot);
+          mymap(snapshot);
         }
         if (!snapshot.hasData) {
           return Center(child: CircularProgressIndicator());
@@ -89,5 +89,17 @@ class _aliState extends State<ali> {
         );
       },
     ));
+  }
+
+  Future<void> mymap(AsyncSnapshot<QuerySnapshot> snapshot) async {
+    await _controller
+        .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+            target: LatLng(
+              snapshot.data!.docs.singleWhere(
+                  (element) => element.id == widget.user_id)['latitude'],
+              snapshot.data!.docs.singleWhere(
+                  (element) => element.id == widget.user_id)['longitude'],
+            ),
+            zoom: 14.47)));
   }
 }

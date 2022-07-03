@@ -61,7 +61,7 @@ class _livelocationState extends State<livelocation> {
                 .snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               print("object yaskdoasdkokoaskopdpkoaspkodpkoaspkof");
-              print(snapshot.data!.docs[0].id);
+              // print(snapshot.data!.docs[0].id);
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
               }

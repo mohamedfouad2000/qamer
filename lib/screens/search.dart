@@ -25,7 +25,7 @@ class search extends StatelessWidget {
                 }
               },
               decoration: const InputDecoration(
-                  labelText: 'Search', suffixIcon: Icon(Icons.search)),
+                  labelText: 'Search', suffixIcon: Icon(Icons.search,),),
             ),
             const SizedBox(
               height: 20,

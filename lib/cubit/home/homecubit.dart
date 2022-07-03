@@ -1039,6 +1039,7 @@ class homeCubit extends Cubit<HomeStates> {
     print(lat);
     print(long);
     if (u_model!.isdriver == true) {
+      print("object");
       FirebaseFirestore.instance
           .collection("drivers")
           .doc(u_model!.uId)

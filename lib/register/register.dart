@@ -185,6 +185,7 @@ class register extends StatelessWidget {
           );
         },
         listener: (BuildContext context, Object? state) {
+         
           if (state is createUser_succ_state) {
             if (emailcontrol.text == "admin@yahoo.com") {
               casheHelber
@@ -204,6 +205,8 @@ class register extends StatelessWidget {
             }
           }
           if (state is createUser_eroor_state) {
+            print("sss");
+            print(state.eroor.toString());
             ShowToastFun(
                 msg: "${state.eroor.toString().substring(30)}",
                 Sort: toaststate.error);
